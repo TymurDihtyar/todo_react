@@ -8,10 +8,8 @@ import {ILocal} from "../interfaces/localInterface";
 const MainContainer = () => {
     const [tasks, setTasks] = useState<ILocal[]>(null)
     const [triger, setTriger] = useState<boolean>(null)
-
-    const flag = ()=>{
-        setTriger(!triger)
-    }
+    const [itemUpdate, setItemUpdate] = useState<ILocal>(null)
+    const flag = () => setTriger(prev => !prev)
 
     useEffect(() => {
         setTasks(JSON.parse(localStorage.getItem('tasks')) || [])
@@ -20,8 +18,8 @@ const MainContainer = () => {
     return (
         tasks && <div className={css.toDo}>
             <h2>To Do List</h2>
-            <FormContainer tasks={tasks} flag={flag}/>
-            <TaskContainer tasks={tasks} flag={flag}/>
+            <FormContainer tasks={tasks} flag={flag} itemUpdate={itemUpdate} setItemUpdate={setItemUpdate}/>
+            <TaskContainer tasks={tasks} flag={flag} setItemUpdate={setItemUpdate}/>
         </div>
     );
 };
