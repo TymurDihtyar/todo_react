@@ -7,15 +7,16 @@ import {ISetState} from "../types/ISetState";
 interface IProps extends PropsWithChildren {
     item: ILocal
     flag: () => void
-    setItemUpdate:ISetState<ILocal>
+    setItemUpdate: ISetState<ILocal>
 }
 
 const OneTask: FC<IProps> = ({item, flag, setItemUpdate}) => {
     const {task} = item
 
     const del = () => {
-        let tasks = JSON.parse(localStorage.getItem('tasks'));
-        tasks.splice(tasks.indexOf(item), 1);
+        const tasks: ILocal[] = JSON.parse(localStorage.getItem('tasks'));
+        const del = tasks.findIndex(elem => elem.task === task)
+        tasks.splice(del, 1);
         localStorage.setItem('tasks', JSON.stringify(tasks))
         flag()
     }
@@ -24,7 +25,7 @@ const OneTask: FC<IProps> = ({item, flag, setItemUpdate}) => {
         <div className={css.item}>
             <p>{task}</p>
             <div className={css.butts}>
-                <button className={css.edit} onClick={()=>setItemUpdate(item)}>edit</button>
+                <button className={css.edit} onClick={() => setItemUpdate(item)}>edit</button>
                 <button className={css.del} onClick={del}>delete</button>
             </div>
         </div>
