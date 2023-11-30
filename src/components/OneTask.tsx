@@ -24,7 +24,7 @@ const OneTask: FC<IProps> = ({item}) => {
         <div className={css.item}>
             <p>{task}</p>
             <div className={css.butts}>
-                <button className={css.edit} onClick={() => dispatch(toDoActions.setItemUpdate({itemUpdate:item}))}>update</button>
+                <button className={css.edit} onClick={() => dispatch(toDoActions.setItemUpdate({itemUpdate:item}))}>edit</button>
                 <button className={css.del} onClick={del}>delete</button>
             </div>
         </div>
