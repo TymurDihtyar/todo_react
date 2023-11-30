@@ -1,25 +1,24 @@
+import {useEffect} from "react";
+import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
+
 import {FormContainer} from "./FormContainer";
 import {TaskContainer} from "./TaskContainer";
-
+import {toDoActions} from "../redux/todoSlice";
 import css from './main.module.css'
-import {useEffect, useState} from "react";
-import {ILocal} from "../interfaces/localInterface";
 
 const MainContainer = () => {
-    const [tasks, setTasks] = useState<ILocal[]>(null)
-    const [triger, setTriger] = useState<boolean>(null)
-    const [itemUpdate, setItemUpdate] = useState<ILocal>(null)
-    const flag = () => setTriger(prev => !prev)
+    const {tasks, flag} = useAppSelector(state => state.toDo)
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        setTasks(JSON.parse(localStorage.getItem('tasks')) || [])
-    }, [triger]);
+        dispatch(toDoActions.setTasks(JSON.parse(localStorage.getItem('tasks')) || []))
+    }, [flag, dispatch]);
 
     return (
         tasks && <div className={css.toDo}>
             <h2>To Do List</h2>
-            <FormContainer tasks={tasks} flag={flag} itemUpdate={itemUpdate} setItemUpdate={setItemUpdate}/>
-            <TaskContainer tasks={tasks} flag={flag} setItemUpdate={setItemUpdate}/>
+            <FormContainer/>
+            <TaskContainer/>
         </div>
     );
 };
