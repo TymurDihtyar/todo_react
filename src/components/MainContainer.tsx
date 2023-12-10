@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 
 import {FormContainer} from "./FormContainer";
 import {TaskContainer} from "./TaskContainer";
-import {toDoActions} from "../redux/todoSlice";
+import {toDoActions} from "../redux/slices/todoSlice";
 import css from './main.module.css'
 
 const MainContainer = () => {

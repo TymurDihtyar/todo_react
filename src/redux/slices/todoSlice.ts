@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {ILocal} from "../interfaces/localInterface";
+import {ILocal} from "../../interfaces/localInterface";
 
 interface IState {
     flag: boolean

@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 
 import {ILocal} from "../interfaces/localInterface";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
-import {toDoActions} from "../redux/todoSlice";
+import {toDoActions} from "../redux/slices/todoSlice";
 import css from "./main.module.css";
 
 const FormContainer = () => {
